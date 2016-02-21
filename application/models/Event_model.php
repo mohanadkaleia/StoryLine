@@ -24,6 +24,8 @@ class Event_model extends CI_Model {
     var $eventDate ='';
     
     var $created_date = '';
+    
+    var $source = '';
      
     var $storyId = '';
     
@@ -37,10 +39,11 @@ class Event_model extends CI_Model {
             'body' => $this->body,
             'image' => $this->image,
             'event_date' => $this->eventDate,
-            'story_id' => $this->storyId,            
+            'story_id' => $this->storyId,   
+            'source' => $this->source,
             'created_date' => date(TIME_FORMAT)     
         );
-        
+        print_r($data);
         // Insert into db
         $this->db->insert(EVENT_TABLE, $data);
         return $this->db->insert_id();
@@ -52,6 +55,7 @@ class Event_model extends CI_Model {
             'body' => $this->body,           
             'image' => $this->image,
             'event_date' => $this->eventDate,
+            'source' => $this->source,
             'story_id' => $this->storyId, 
             'created_date' => date(TIME_FORMAT)
         );

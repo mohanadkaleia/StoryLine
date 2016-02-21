@@ -19,9 +19,14 @@
         <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
         <!-- Theme style -->
         <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/reset.css">
+        
+        <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/time-line.css">
+        <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/navigation.css">
+        
+        <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/event-form.css">
         <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/style.css">
-        <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/contact-form.css">
-
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker3.min.css">
+        
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -29,29 +34,37 @@
             <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
 
-        <!-- REQUIRED JS SCRIPTS -->
 
         <!-- jQuery 2.1.4 -->
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> 
-        <!--<script src="<?php echo base_url(); ?>plugins/jQuery/jQuery-2.1.4.min.js"></script>-->
+        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>         
         <!-- Bootstrap 3.3.5 -->
-        <script src="<?php echo base_url(); ?>assets/bootstrap/js/bootstrap.min.js"></script>
-         
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.min.js"></script>
         <script src="<?php echo base_url(); ?>assets/js/main.js"></script>
+        <script src="<?php echo base_url(); ?>assets/js/nav-min.js"></script>
         <script src="<?php echo base_url(); ?>assets/js/modernizr.js"></script>
         <script src="<?php echo base_url(); ?>assets/js/velocity.min.js"></script>
         <script src="<?php echo base_url(); ?>assets/js/morphing-window.js"></script>  
         <script src="<?php echo base_url(); ?>assets/js/contact-form.js"></script>  
+
     </head>
     <body>
         <header>
             <h1>{pageTitle}</h1>
+            <nav class="main-nav">		
+		<ul>
+                    <li><a href="<?php echo base_url();?>story" class="active"><i class="fa fa-home"></i></a></li>
+                    <li><a href="#0" ><i class="fa fa-bookmark-o"></i></a></li>
+                    <li><a href="#0" ><i class="fa fa-info"></i></a></li>
+                    <li><a href="#0"><i class="fa fa-sign-out"></i></a></li>
+		</ul>		
+            </nav>
         </header>
         
+        <section id="cd-timeline" class="cd-container cd-section">
         {content}
         
-              
-        <script src="<?php echo base_url();?>assets/js/nav-min.js"></script> <!-- Resource jQuery -->
-        <script src="<?php echo base_url();?>assets/js/main.js"></script> <!-- Resource jQuery -->
+        {addEvent}
+        </section>
     </body>
 </html>
