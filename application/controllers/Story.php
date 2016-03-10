@@ -26,9 +26,7 @@ class Story extends CI_Controller {
         $this->load->model('Event_model');
         $this->load->model('Story_model');
         $this->load->library('parser');
-        $this->load->library('tank_auth');
-        $this->load->library('session');
-        $this->load->model('tank_auth/users');
+        $this->load->library('session');           
     }
 
     public function index($id = "") {
