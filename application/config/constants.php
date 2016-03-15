@@ -94,3 +94,4 @@ define('TIME_FORMAT', 'Y-m-d H:i:s');
  */
 define('EVENT_TABLE', 'event');
 define('STORY_TABLE', 'story');
+define('USER_TABLE', 'user');
