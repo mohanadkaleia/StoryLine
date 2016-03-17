@@ -48,6 +48,7 @@
     </head>
     <body>
         <header>
+            <img id="logo" src="<?php echo base_url();?>assets/img/logo.png"/>
             <h1>{pageTitle}</h1>
             <nav class="main-nav">		
 		<ul>

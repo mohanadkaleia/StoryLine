@@ -5,7 +5,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 require __DIR__ . '/../third_party/vendor/autoload.php';
 
 class User extends CI_Controller {
+    
+    public function __construct() {
+        parent::__construct();
 
+        // Load the model
+        $this->load->model('User_model');        
+    }        
+    
     /**
      * Index Page for this controller.
      *
@@ -31,12 +38,12 @@ class User extends CI_Controller {
         $helper = $fb->getRedirectLoginHelper();
 
         $permissions = ['email', 'public_profile']; // Optional permissions
-        $loginUrl = $helper->getLoginUrl(base_url() . 'user/login', $permissions);
+        $loginUrl = $helper->getLoginUrl(base_url() . 'user/getUserFacebookInfo', $permissions);
 
         echo '<a href="' . htmlspecialchars($loginUrl) . '">Log in with Facebook!</a>';
     }
 
-    public function login() {
+    public function getUserFacebookInfo() {
         $fb = new Facebook\Facebook([
             'app_id' => '592740737545404',
             'app_secret' => 'd87d1004d23f3338729d908a2e736e9a',
@@ -76,17 +83,12 @@ class User extends CI_Controller {
                 // When validation fails or other local issues
                 echo 'Facebook SDK returned an error: ' . $e->getMessage();
                 exit;
-            }
-            
+            }            
             $this->signInUserWithFacebook($userNode);
-//            echo 'Logged in as ' . $userNode->getName(). ' Email: ' . $userNode->getEmail() . ' First name:'.$userNode->getFirstName(). ' Last name:' . $userNode->getLastName();
-//            echo '<br/>';
-//            echo '<img src="https://graph.facebook.com/'.$userNode->getId().'/picture?type=large"/>'; 
         }
     }
     
-    private function signInUserWithFacebook($userNode) {
-        $this->load->model('User_model');
+    private function signInUserWithFacebook($userNode) {        
         $userInformation = new stdClass();
         $userInformation->email = $userNode->getEmail();
         $userInformation->firstName = $userNode->getFirstName();
@@ -105,6 +107,23 @@ class User extends CI_Controller {
         $this->session->set_userdata(array('user'=> $userInformation));    
         
         // Redirect to the previous page
+        
+    }
+    
+    public function login() {        
+        $userInformation = new stdClass();
+        $userInformation->email = $this->input->post('email');
+        $userInformation->password = md5($this->input->post('password'));
+        
+        // Get user information to login
+        $user = $this->User_model->selectBy($userInformation->email, '', '', $userInformation->password);
+        
+        // Register the user if not exist
+        if (!isset($user)) {
+            $this->User_model->email = $userInformation->email;
+            $this->User_model->password = $userInformation->password;            
+            $this->User_model->insert();
+        }
         
     }
 

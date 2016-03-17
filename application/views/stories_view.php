@@ -24,11 +24,11 @@
                         </div>
                         
                         <div class="sign-in-logo"><i class="fa fa-hand-peace-o"></i></div>
-                        <form>                                                                                    
+                        <form method="POST" action="<?php base_url();?>user/login">                                                                                    
                             <input type="text" name="email" class="form-control" placeholder="email" aria-describedby="basic-addon1">                      
                             <input type="password" class="form-control" name="password" required="true" placeholder="y*ur P@ssw*rd"/>
                             
-                            <input type="submit" value="Login" class="btn btn-info"/>
+                            <input type="submit" value="Login / Register" class="btn btn-info"/>
                             
                             <div class="social">
                                 <a href="#" class="facebook"><i class="fa fa-facebook"></i> </a>

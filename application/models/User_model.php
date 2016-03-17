@@ -17,6 +17,7 @@ class User_model extends CI_Model {
     var $firstName = '';
     var $lastName = '';
     var $email = '';
+    var $password = '';
     var $createdDate = '';
     var $isDeleted = '';      
     
@@ -29,6 +30,7 @@ class User_model extends CI_Model {
             'first_name' => $this->firstName,
             'last_name' => $this->lastName,
             'email' => $this->email,
+            'password' => $this->password,
             'created_date' => date(TIME_FORMAT)            
         );
         
@@ -41,7 +43,8 @@ class User_model extends CI_Model {
        $data = array(       
             'first_name' => $this->firstName,
             'last_name' => $this->lasttName,
-            'email' => $this->email                      
+            'email' => $this->email,
+            'password' => $this->password
         );
         
         // Update by id  
@@ -64,11 +67,12 @@ class User_model extends CI_Model {
         }     
     }
     
-    function selectBy($email ='', $firstName ='', $lastName = '') {        
+    function selectBy($email ='', $firstName ='', $lastName = '', $password = '') {        
         if ($email <> '') {$where['email'] = $email;}
         if ($firstName <> '') {$where['first_name'] = $firstName;}
         if ($lastName <> '') {$where['last_name'] = $lastName;}
-                
+        if ($email <> '') {$where['password'] = $password;}
+        
         $query = $this->db->get_where(USER_TABLE, $where);
         if (count($query->result()) > 0) {
             return $query->result()[0];      

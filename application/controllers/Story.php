@@ -97,7 +97,7 @@ class Story extends CI_Controller {
         $body .= $addStoryView;
         $data = array(
             'title' => 'Histeller | home',
-            'pageTitle' => 'Histeller | MomenTell | Mamboo | LarkTalk',
+            'pageTitle' => 'LarkTalk',
             'content' => $body            
         );
 
